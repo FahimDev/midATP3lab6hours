@@ -27,6 +27,27 @@ router.get('/userlist', function(req,res){
 	});
 });
 
+router.post('/addNewproduct', function(req,res){
+    var user = {
+		gender: req.body.gender,
+		product_name: req.body.product_name,
+		img: req.body.img,
+		discription: req.body.discription,
+		size:  req.body.size,
+		color:  req.body.color,
+		prize:  req.body.prize,
+	};
+	
+	userModel.addProd(user, function(status){
+		
+		if(status){
+			res.redirect('/login/productList');
+		}else{
+			res.send('/dashboard');
+		}
+	});
+});
+
 
 router.post('/', function(request, response){
 	
